@@ -34,7 +34,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 
 function GoogleIcon() {
-    return <Image src="/google.png" width={24} height={24}/>
+    return <Image unoptimized={true} src="/google.png" width={24} height={24}/>
 }
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -311,7 +311,7 @@ export default function Main() {
       <CssBaseline />
       <AppBar position="fixed" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div style={{position: 'absolute', top: 5}}><Image src="/logo.png" width={100} height={100} /></div>
+          <div style={{position: 'absolute', top: 5}}><Image unoptimized={true} src="/logo.png" width={100} height={100} /></div>
           <nav style={{marginLeft: 110}}>
             <Link variant="button" color="textPrimary" href="#formules" className={classes.link}>
               <span style={{color: 'white'}}>
@@ -343,7 +343,7 @@ export default function Main() {
       </AppBar>
 
       <center style={{paddingTop: 60}}> 
-        <Image src="/nathan_final.jpg" width={5071} height={2406} layout="responsive"/>
+        <Image unoptimized={true} src="/nathan_final.jpg" width={5071} height={2406} layout="responsive"/>
       </center>
 
       <Book/>
@@ -354,7 +354,7 @@ export default function Main() {
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>Welcome to Curren Surf School</Typography>
         </Box>
         <Box display="flex" justifyContent="center" paddingBottom={5}>
-          <Image src="/logo.png" width={300} height={300} unoptimized={true}/>
+          <Image unoptimized={true} src="/logo.png" width={300} height={300} />
         </Box>
         <Box p={2}>
 
@@ -377,7 +377,7 @@ export default function Main() {
       <Book onClick={() => setBookingType(tiers[0].title)}/>
       <center>
 
-      <Image src="/beginners.jpg" width={1605} height={692} layout="responsive"/>
+      <Image unoptimized={true} src="/beginners.jpg" width={1605} height={692} layout="responsive"/>
       </center>
 
       <Pricing classes={classes} setBookingType={setBookingType}></Pricing>
@@ -396,7 +396,7 @@ export default function Main() {
         </Box>
       </Container>
       
-      <Image src="/familly.jpg" width={1200} height={675} layout="responsive"/>
+      <Image unoptimized={true} src="/familly.jpg" width={1200} height={675} layout="responsive"/>
 
      <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Box p={5} justifyContent="center" >

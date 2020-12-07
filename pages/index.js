@@ -1,18 +1,28 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div >
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet"/>
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <Link href="/about">
+          <a>About</a>
+        </Link>
+        <Link href="/contact">
+          <a>Reservez</a>
+        </Link>
 
         <p className={styles.description}>
           Get started by editing{' '}

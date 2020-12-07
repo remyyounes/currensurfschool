@@ -36,7 +36,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 
 function GoogleIcon() {
-    return <Image src="/google.jpg" width={24} height={24}/>
+    return <Image src="/google.png" width={24} height={24}/>
 }
 const useStyles = makeStyles((theme) => ({
   '@global': {

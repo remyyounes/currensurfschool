@@ -354,7 +354,7 @@ export default function Main() {
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>Welcome to Curren Surf School</Typography>
         </Box>
         <Box display="flex" justifyContent="center" paddingBottom={5}>
-          <Image src="/logo.png" width={300} height={300} />
+          <Image src="/logo.png" width={300} height={300} unoptimized={true}/>
         </Box>
         <Box p={2}>
 

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   link: {
-    margin: theme.spacing(1, 1.5),
+    margin: theme.spacing(0, 1),
   },
   heroContent: {
     padding: theme.spacing(2, 0, 2),
@@ -182,10 +182,10 @@ const theme = createMuiTheme({
           contrastText: COLOR_YELLOW,
         },
         secondary: {
-          light: '#ff7961',
-          main: '#f44336',
-          dark: '#ba000d',
-          contrastText: '#000',
+          light: COLOR_YELLOW,
+          main: COLOR_YELLOW,
+          dark: COLOR_YELLOW,
+          contrastText: COLOR_BLUE,
         },
     },
     typography: {
@@ -210,7 +210,7 @@ function Pricing({classes}) {
   };
   return <>
     <Container maxWidth="sm" component="main" className={classes.heroContent}>
-      <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom> Formules </Typography>      
+      <Typography id="formules"  component="h1" variant="h2" align="center" color="textPrimary" gutterBottom style={{paddingTop:60}}> Formules </Typography>      
     </Container>
     
     <Box display="flex" component="main" justifyContent="center" paddingBottom={5}>
@@ -307,27 +307,29 @@ export default function Main() {
       <AppBar position="fixed" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div style={{position: 'absolute', top: 5}}><Image src="/logo.png" width={100} height={100} /></div>
-          <nav style={{marginLeft: 150}}>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+          <nav style={{marginLeft: 110}}>
+            <Link variant="button" color="textPrimary" href="#formules" className={classes.link}>
               <span style={{color:COLOR_YELLOW}}>
-                Curren Surf School
+                Nos Formules  
               </span>
             </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              <span style={{color:COLOR_YELLOW}}>
-                Formules  
-              </span>
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              <span style={{color:COLOR_YELLOW}}>
-                Familly
-              </span>
-            </Link>
-            <Button variant="contained" color="primary" size="lg">Reservez</Button>
-            <Link>
-            {/* <Phone/> */}
-            </Link>
+
           </nav>
+          <Box display="flex" flex={1} justifyContent="flex-end" color="primary.contrastText" >
+          <div style={{margin: "0 5px 0 5px " }}>
+              <Button variant="contained" color="secondary" >
+                <b>
+
+                Reserver
+                </b>
+              </Button>
+            </div>
+            <div style={{margin: "0 5px 0 5px " }}>
+            <Link href="tel:+33 6 29 46 13 63" color="inherit">
+              <PhoneIcon style={{fontSize: 30}}></PhoneIcon>
+            </Link>
+            </div>
+          </Box>
         </Toolbar>
       </AppBar>
 
@@ -392,9 +394,9 @@ export default function Main() {
           <Typography id="book" component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
             S'inscrire
           </Typography>
-          <Typography variant="h4"  color="textSecondary" component="p" gutterBottom align="center">
+          <Text>
             Il ne vous reste que quelques cliques pour vous lancer, les vagues vous attendent et le plaisir est à porté de main. N’hésitez plus!
-          </Typography>
+          </Text>
           <Form handleFormChange={handleFormChange} values={formState}/>
         </Box>
       </Container> 

@@ -24,7 +24,6 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Text from '../components/button'
-import { Paper } from '@material-ui/core';
 
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'

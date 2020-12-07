@@ -148,11 +148,16 @@ const tiers = [
 
 
 function Book() {
-    return <center>
-        <Box m={2}>
-            <Button variant="contained" color="primary">Reservez</Button>
-        </Box>
-    </center>
+  const onClick = function(event) {
+    event.preventDefault()
+  }
+  return <center>
+    <Box m={2}>
+      <Link href="#book" >
+        <Button  variant="contained" color="primary">Reserver</Button>
+      </Link>
+    </Box>
+  </center>
 }
 
 function Phone() {
@@ -280,6 +285,16 @@ function Pricing({classes}) {
 export default function Main() {
   const classes = useStyles();
 
+  const [formState, setForm] = React.useState({ })
+  const handleFormChange = function(event) {
+    const {name, value} = event.target
+    setForm({
+      ...formState,
+      [name]: value
+    })
+    console.log({name, value})
+  }
+
   return (
     <ThemeProvider theme={theme}>
         <Head>
@@ -316,7 +331,7 @@ export default function Main() {
         </Toolbar>
       </AppBar>
 
-      <center> 
+      <center style={{paddingTop: 60}}> 
         <Image src="/nathan_final.jpg" width={5071} height={2406} layout="responsive"/>
       </center>
 
@@ -324,40 +339,28 @@ export default function Main() {
 
       {/* Hero unit */}
       <Container maxWidth="md" component="main" className={classes.heroContent}>
-          <Box p={2}>
-      <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Curren Surf School
-        </Typography>
-        
-        <Grid container>
-            <Grid item key={'key1'} xs={6} sm={6}>
-            <Image src="/logo.png" width={450} height={450} />
-
-            </Grid>
-            <Grid item key={'key2'} xs={6} sm={6}>
-
-            <Text>Les Curren sont une famille incontournable dans le monde du surf.</Text>
-            <Text>
-            L’école Curren Surf School transmet à ses élèves une expertise unique acquise depuis 3 générations.
-            </Text>
-            <Text>
-
-
-    Vos moniteurs seront heureux de partager leur passion avec vous pour acquérir rapidement des sensations sur la vague dans un cadre sécurisé. 
-            </Text>
-    <Text>
-
-
-    Les petits groupes familiaux de 6 élèves pour un moniteur de surf vous permettront de progresser plus rapidement. 
-            </Text>
-    <Text>
-
-
-    Nous proposons également une section exclusive de coaching avancé, avec un suivi video pour les surfeurs les plus expérimentés.
-            </Text>
-        </Grid>
-        </Grid>
+        <Box p={2}>
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>Welcome to Curren Surf School</Typography>
         </Box>
+        <Box display="flex" justifyContent="center" paddingBottom={5}>
+          <Image src="/logo.png" width={450} height={450} />
+        </Box>
+        <Box p={2}>
+
+          <Text>Les Curren sont une famille incontournable dans le monde du surf.</Text>
+          <Text>
+            L’école Curren Surf School transmet à ses élèves une expertise unique acquise depuis 3 générations.
+          </Text>
+          <Text>
+            Vos moniteurs seront heureux de partager leur passion avec vous pour acquérir rapidement des sensations sur la vague dans un cadre sécurisé. 
+          </Text>
+          <Text>
+            Les petits groupes familiaux de 6 élèves pour un moniteur de surf vous permettront de progresser plus rapidement. 
+          </Text>
+          <Text>
+            Nous proposons également une section exclusive de coaching avancé, avec un suivi video pour les surfeurs les plus expérimentés.
+          </Text>
+          </Box>
       </Container>
 
       <Book/>
@@ -371,7 +374,7 @@ export default function Main() {
       <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Box p={5}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Join the Familly!
+            Join the Family!
           </Typography>
           <Text>
             Les cours sont assurés principalement par Nathan Curren titulaire des diplômes ISA, PSE1 et d’une Carte Professionnelle d’Éducateur Sportif.
@@ -386,13 +389,13 @@ export default function Main() {
 
      <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Box p={5} justifyContent="center" >
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          <Typography id="book" component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
             S'inscrire
           </Typography>
           <Typography variant="h4"  color="textSecondary" component="p" gutterBottom align="center">
             Il ne vous reste que quelques cliques pour vous lancer, les vagues vous attendent et le plaisir est à porté de main. N’hésitez plus!
           </Typography>
-          <Form/>
+          <Form handleFormChange={handleFormChange} values={formState}/>
         </Box>
       </Container> 
 
@@ -400,17 +403,17 @@ export default function Main() {
         <center>
           <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
             <Grid item>
-              <Link href="http://instagram.com/currensurfschool">
+              <Link href="http://instagram.com/currensurfschool" target="_blank">
                 <InstagramIcon/>
               </Link>
             </Grid>
             <Grid item>
-              <Link href="https://www.facebook.com/Curren-Surf-School-116677250176599">
+              <Link href="https://www.facebook.com/Curren-Surf-School-116677250176599" target="_blank">
                 <FacebookIcon/>
               </Link>
             </Grid>
             <Grid item>
-              <Link href="https://g.page/currensurfschool?gm">
+              <Link href="https://g.page/currensurfschool?gm" target="_blank">
                 <GoogleIcon/>
               </Link>
             </Grid>
@@ -422,26 +425,30 @@ export default function Main() {
 }
 
 
-function Field({ children, id, label, multiline }) {
+function Field({ children, id, name, label, multiline, onChange }) {
   return <Box paddingBottom={2}>
-    <TextField id={id} label={label}  multiline={multiline} fullWidth/>
+    <TextField name={name} id={id} label={label}  multiline={multiline} fullWidth onChange={onChange}/>
   </Box>
 }
 
 
-function Form() {
+function Form({handleFormChange, values}) {
+
+  const onValidate = function(){
+    console.log({values})
+  }
+
     return <form noValidate autoComplete="off" >
 
-        <Field label="Nom" />
-        <Field label="Prénom" />
-        <Field label="Téléphone" />
-        <Field label="Email" />
+        <Field onChange={handleFormChange} name="lastName" label="Nom" />
+        <Field onChange={handleFormChange} name="firstName" label="Prénom" />
+        <Field onChange={handleFormChange} name="telephone" label="Téléphone" />
+        <Field onChange={handleFormChange} name="email" label="Email" />
         
-        {/* <InputLabel id="demo-simple-select-label">Formules</InputLabel> */}
         <Box paddingBottom={2}>
           <Select
-          //   labelId="demo-simple-select-label"
             id="demo-simple-select"
+            name="type"
             fullWidth
             value={10}
             style={{marginTop: 14}}
@@ -452,10 +459,10 @@ function Form() {
             <MenuItem value={20}>Particulier (1h)</MenuItem>
           </Select>
         </Box>
-        <Field label="Message" multiline />
+        <Field onChange={handleFormChange} name="message" label="Message" multiline />
         <center>
           <Box m={2}>
-            <Button variant="contained" color="primary">Envoyez le formulaire</Button>
+            <Button variant="contained" color="primary" onClick={onValidate}>Envoyer le formulaire</Button>
           </Box>
         </center>
     </form>

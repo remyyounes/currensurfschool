@@ -291,32 +291,23 @@ export default function Main() {
       <CssBaseline />
       <AppBar position="fixed" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div style={{position: 'absolute', top: 5}}>
-              <Image src="/logo.png" width={100} height={100} />
-              </div>
+          <div style={{position: 'absolute', top: 5}}><Image src="/logo.png" width={100} height={100} /></div>
           <nav style={{marginLeft: 150}}>
-              
-
-
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                <span style={{color:COLOR_YELLOW}}>
-              Curren Surf School
-                    
-                </span>
+              <span style={{color:COLOR_YELLOW}}>
+                Curren Surf School
+              </span>
             </Link>
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                <span style={{color:COLOR_YELLOW}}>
-              Formules
-                    
-                </span>
+              <span style={{color:COLOR_YELLOW}}>
+                Formules  
+              </span>
             </Link>
             <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                <span style={{color:COLOR_YELLOW}}>
-              Familly
-                    
-                </span>
+              <span style={{color:COLOR_YELLOW}}>
+                Familly
+              </span>
             </Link>
-
             <Button variant="contained" color="primary" size="lg">Reservez</Button>
             <Link>
             {/* <Phone/> */}
@@ -324,13 +315,12 @@ export default function Main() {
           </nav>
         </Toolbar>
       </AppBar>
-      {/* Test */}
-      <center> 
 
-      <Image src="/nathan_final.jpg" width={5071} height={2406} layout="responsive"/>
+      <center> 
+        <Image src="/nathan_final.jpg" width={5071} height={2406} layout="responsive"/>
       </center>
 
-        <Book/>
+      <Book/>
 
       {/* Hero unit */}
       <Container maxWidth="md" component="main" className={classes.heroContent}>
@@ -367,7 +357,6 @@ export default function Main() {
             </Text>
         </Grid>
         </Grid>
-
         </Box>
       </Container>
 
@@ -380,69 +369,63 @@ export default function Main() {
       <Pricing classes={classes}></Pricing>
 
       <Container maxWidth="md" component="main" className={classes.heroContent} >
-          <Box p={5}>
-      <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Join the Familly!
-        </Typography>
-
-                 <Text>
-
-
-    Les cours sont assurés principalement par Nathan Curren titulaire des diplômes ISA, PSE1 et d’une Carte Professionnelle d’Éducateur Sportif.
-    </Text>
-    <Text>  
-
-
-    Que vous soyez débutant ou expérimenté, une expérience unique vous attend. Rejoignez l’école Curren Surf School sur Instagram, Facebook et Google Reviews . Nous vous accueillons toute l'année avec plaisir!
-            </Text>
+        <Box p={5}>
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            Join the Familly!
+          </Typography>
+          <Text>
+            Les cours sont assurés principalement par Nathan Curren titulaire des diplômes ISA, PSE1 et d’une Carte Professionnelle d’Éducateur Sportif.
+          </Text>
+          <Text>
+            Que vous soyez débutant ou expérimenté, une expérience unique vous attend. Rejoignez l’école Curren Surf School sur Instagram, Facebook et Google Reviews . Nous vous accueillons toute l'année avec plaisir!
+          </Text>
         </Box>
-
       </Container>
       
       <Image src="/familly.jpg" width={1200} height={675} layout="responsive"/>
 
-
      <Container maxWidth="md" component="main" className={classes.heroContent} >
-          <Box p={5}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                S'inscrire
-            </Typography>
-
-            <Form/>
+        <Box p={5} justifyContent="center" >
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            S'inscrire
+          </Typography>
+          <Typography variant="h4"  color="textSecondary" component="p" gutterBottom align="center">
+            Il ne vous reste que quelques cliques pour vous lancer, les vagues vous attendent et le plaisir est à porté de main. N’hésitez plus!
+          </Typography>
+          <Form/>
         </Box>
       </Container> 
 
       <Container maxWidth="md" className={classes.heroContent} >
-          <center>
-                <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
-                    <Grid item>
-                        <Link href="http://instagram.com/currensurfschool">
-                            <InstagramIcon/>
-                        </Link>
-                    </Grid>
-                    <Grid item>
-                        <Link href="https://www.facebook.com/Curren-Surf-School-116677250176599">
-                            <FacebookIcon/>
-                        </Link>
-                    </Grid>
-                    <Grid item>
-                        <Link href="https://g.page/currensurfschool?gm">
-                            <GoogleIcon/>
-                        </Link>
-                    </Grid>
-                </Grid>
-          </center>
+        <center>
+          <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
+            <Grid item>
+              <Link href="http://instagram.com/currensurfschool">
+                <InstagramIcon/>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="https://www.facebook.com/Curren-Surf-School-116677250176599">
+                <FacebookIcon/>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="https://g.page/currensurfschool?gm">
+                <GoogleIcon/>
+              </Link>
+            </Grid>
+          </Grid>
+        </center>
       </Container>
-
     </ThemeProvider>
   );
 }
 
 
 function Field({ children, id, label, multiline }) {
-    return <div>
-        <TextField id={id} label={label}  multiline={multiline} fullWidth/>
-    </div>
+  return <Box paddingBottom={2}>
+    <TextField id={id} label={label}  multiline={multiline} fullWidth/>
+  </Box>
 }
 
 
@@ -455,21 +438,25 @@ function Form() {
         <Field label="Email" />
         
         {/* <InputLabel id="demo-simple-select-label">Formules</InputLabel> */}
-        <Select
-        //   labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          fullWidth
-          value={10}
-          style={{marginTop: 14}}
-        >
-          <MenuItem value={10}>Cours de Surf</MenuItem>
-          <MenuItem value={20}>Stage (5 Cours)</MenuItem>
-          <MenuItem value={20}>Club (10 Cours)</MenuItem>
-          <MenuItem value={20}>Particulier (1h)</MenuItem>
-
-        </Select>
+        <Box paddingBottom={2}>
+          <Select
+          //   labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            fullWidth
+            value={10}
+            style={{marginTop: 14}}
+          >
+            <MenuItem value={10}>Cours de Surf</MenuItem>
+            <MenuItem value={20}>Stage (5 Cours)</MenuItem>
+            <MenuItem value={20}>Club (10 Cours)</MenuItem>
+            <MenuItem value={20}>Particulier (1h)</MenuItem>
+          </Select>
+        </Box>
         <Field label="Message" multiline />
-        <Book></Book>
-
+        <center>
+          <Box m={2}>
+            <Button variant="contained" color="primary">Envoyez le formulaire</Button>
+          </Box>
+        </center>
     </form>
 }

@@ -147,13 +147,11 @@ const tiers = [
 ];
 
 
-function Book() {
-  const onClick = function(event) {
-    event.preventDefault()
-  }
+function Book({onClick}) {
+  
   return <center>
     <Box m={2}>
-      <Link href="#book" >
+      <Link href="#book" onClick={onClick} >
         <Button  variant="contained" color="primary"><b>Reserver</b></Button>
       </Link>
     </Box>
@@ -198,10 +196,10 @@ const theme = createMuiTheme({
 
    const seasonText = {
      'on': 'Pleine Saison: Avril - Octobre',
-     'off': 'Pleine Saison: Novembre - Mars',
+     'off': 'Basse Saison: Novembre - Mars',
    }
 
-function Pricing({classes}) {
+function Pricing({classes, setBookingType}) {
 
   const [season, setSeason] = React.useState('on');
 
@@ -266,8 +264,11 @@ function Pricing({classes}) {
                 </ul>
               </CardContent>
               <CardActions>
-              <LinkNext href="/contact">
-                <Button fullWidth variant={tier.buttonVariant} color="primary">
+              <LinkNext href="#book">
+                <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={(event) => {
+                  // event.preventDefault();
+                  setBookingType(tier.title)}
+                  }>
                   {tier.buttonText}
                 </Button>
               </LinkNext>
@@ -277,7 +278,6 @@ function Pricing({classes}) {
           </Grid>
         ))}
       </Grid>
-      <Book />
     </Container>
   </>
 }
@@ -285,7 +285,7 @@ function Pricing({classes}) {
 export default function Main() {
   const classes = useStyles();
 
-  const [formState, setForm] = React.useState({ })
+  const [formState, setForm] = React.useState({ type: tiers[0].title})
   const handleFormChange = function(event) {
     const {name, value} = event.target
     setForm({
@@ -293,6 +293,13 @@ export default function Main() {
       [name]: value
     })
     console.log({name, value})
+  }
+
+  const setBookingType = function(value) {
+    setForm({
+      ...formState,
+      type: value
+    })
   }
 
   return (
@@ -369,13 +376,13 @@ export default function Main() {
           </Box>
       </Container>
 
-      <Book/>
+      <Book onClick={() => setBookingType(tiers[0].title)}/>
       <center>
 
       <Image src="/beginners.jpg" width={1605} height={692} layout="responsive"/>
       </center>
 
-      <Pricing classes={classes}></Pricing>
+      <Pricing classes={classes} setBookingType={setBookingType}></Pricing>
 
       <Container maxWidth="md" component="main" className={classes.heroContent} >
         <Box p={5}>
@@ -443,26 +450,23 @@ function Form({handleFormChange, values}) {
   const onValidate = function(){
     console.log({values})
   }
-
+  console.log(values.type)
     return <form noValidate autoComplete="off" >
 
-        <Field onChange={handleFormChange} name="lastName" label="Nom" />
-        <Field onChange={handleFormChange} name="firstName" label="Prénom" />
-        <Field onChange={handleFormChange} name="telephone" label="Téléphone" />
-        <Field onChange={handleFormChange} name="email" label="Email" />
+        <Field onChange={handleFormChange} name="lastName" label="Nom" value={values.lastName}/>
+        <Field onChange={handleFormChange} name="firstName" label="Prénom" value={values.firstName}/>
+        <Field onChange={handleFormChange} name="telephone" label="Téléphone" value={values.telephone}/>
+        <Field onChange={handleFormChange} name="email" label="Email" value={values.email}/>
         
         <Box paddingBottom={2}>
           <Select
             id="demo-simple-select"
             name="type"
             fullWidth
-            value={10}
+            value={values.type}
             style={{marginTop: 14}}
           >
-            <MenuItem value={10}>Cours de Surf</MenuItem>
-            <MenuItem value={20}>Stage (5 Cours)</MenuItem>
-            <MenuItem value={20}>Club (10 Cours)</MenuItem>
-            <MenuItem value={20}>Particulier (1h)</MenuItem>
+            {tiers.map( ({title}) => <MenuItem value={title}>{title}</MenuItem>)}
           </Select>
         </Box>
         <Field onChange={handleFormChange} name="message" label="Message" multiline />

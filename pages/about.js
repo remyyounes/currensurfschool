@@ -18,6 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Text from '../components/button'
@@ -77,7 +80,10 @@ const tiers = [
   {
     title: "Cours d'initiation",
     subheader: 'Enfants/Adultes',
-    price: '55',
+    price: {
+      on: '55',
+      off: '45',
+    },
     description: ['6 Elèves max', '1h30', 'Materiel inclus'],
     buttonText: 'Reserver initiation',
     buttonVariant: 'contained',
@@ -85,7 +91,10 @@ const tiers = [
   {
     title: 'Stage',
     subheader: '5 cours',
-    price: '250',
+    price: {
+      on: '250',
+      off: '220',
+    },
     description: ['6 Elèves max', '1h30', 'Materiel inclus'],
     buttonText: 'Reserver stage',
     buttonVariant: 'contained',
@@ -93,7 +102,10 @@ const tiers = [
 {
     title: 'Club',
     subheader: '10 cours',
-    price: '450',
+    price: {
+      on: '450',
+      off: '400',
+    },
     description: ['6 Elèves max', '1h30', 'Materiel inclus'],
     buttonText: 'Reserver club',
     buttonVariant: 'contained',
@@ -101,7 +113,10 @@ const tiers = [
 {
     title: 'Surf Coaching',
     subheader: 'Surfeurs experimentés',
-    price: '40',
+    price: {
+      on: '40',
+      off: '30'
+    },
     description: ['6 Elèves max', '1h30', 'Materiel inclus', '+20€ debrief video'],
     buttonText: 'Reserver coaching',
     buttonVariant: 'contained',
@@ -109,7 +124,10 @@ const tiers = [
 {
     title: 'Coaching Particulier',
     subheader: 'Surfeurs experimentés',
-    price: '100',
+    price: {
+      on:'100',
+      off:'80',
+    },
     description: [ '1h', 'Materiel inclus', 'debrief video inclus'],
     buttonText: 'Reserver coaching particulier',
     buttonVariant: 'contained',
@@ -117,7 +135,10 @@ const tiers = [
 {
     title: 'Cours particuliers',
     subheader: '1 cours',
-    price: '120',
+    price: {
+      on: '120',
+      off: '100',
+    },
     description: ['1h', 'Materiel inclus'],
     buttonText: 'Reserver particulier',
     buttonVariant: 'contained',
@@ -169,7 +190,94 @@ const theme = createMuiTheme({
       ].join(','),
    },});
 
-export default function Pricing() {
+
+   const seasonText = {
+     'on': 'Pleine Saison: Avril - Octobre',
+     'off': 'Pleine Saison: Novembre - Mars',
+   }
+
+function Pricing({classes}) {
+
+  const [season, setSeason] = React.useState('on');
+
+  const handleSeason = (event, newSeason) => {
+    setSeason(newSeason);
+  };
+  return <>
+    <Container maxWidth="sm" component="main" className={classes.heroContent}>
+      <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom> Formules </Typography>      
+    </Container>
+    
+    <Box display="flex" component="main" justifyContent="center" paddingBottom={5}>
+      <ToggleButtonGroup
+        value={season}
+        exclusive
+        onChange={handleSeason}
+        aria-label="Saison"
+        >
+        <ToggleButton value="on" aria-label="Pleine saison">
+          Pleine Saison
+        </ToggleButton>
+        <ToggleButton value="off" aria-label="Basse saison">
+          Basse Saison
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+    
+    <Box display="flex" component="main" justifyContent="center" paddingBottom={5}>
+
+    <Text>{seasonText[season]}</Text>
+    </Box>
+
+    <Container maxWidth="md" component="main">
+      <Grid container spacing={5} alignItems="flex-start">
+        {tiers.map((tier) => (
+          // Enterprise card is full width at sm breakpoint
+          <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+            <Card>
+              <CardHeader
+                title={tier.title}
+                subheader={tier.subheader}
+                titleTypographyProps={{ align: 'center' }}
+                subheaderTypographyProps={{ align: 'center' }}
+                action={tier.title === 'Pro' ? <StarIcon /> : null}
+                className={classes.cardHeader}
+              />
+              <CardContent>
+                <div className={classes.cardPricing}>
+                  <Typography component="h2" variant="h3" color="textPrimary">
+                    {tier.price[season]}
+                  </Typography>
+                    <Typography variant="h4" color="textSecondary">
+                    €
+                  </Typography>
+                </div>
+                <ul>
+                  {tier.description.map((line) => (
+                    <Typography component="li" variant="subtitle1" align="center" key={line}>
+                      {line}
+                    </Typography>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardActions>
+              <LinkNext href="/contact">
+                <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  {tier.buttonText}
+                </Button>
+              </LinkNext>
+                  
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <Book />
+    </Container>
+  </>
+}
+   
+export default function Main() {
   const classes = useStyles();
 
   return (
@@ -269,58 +377,7 @@ export default function Pricing() {
       <Image src="/beginners.jpg" width={1605} height={692} layout="responsive"/>
       </center>
 
-      <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Formules
-        </Typography>
-        
-      </Container>
-      {/* End hero unit */}
-      <Container maxWidth="md" component="main">
-        <Grid container spacing={5} alignItems="flex-start">
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      {tier.price}
-                    </Typography>
-                      <Typography variant="h4" color="textSecondary">
-                      €
-                    </Typography>
-                  </div>
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardActions>
-                <LinkNext href="/contact">
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
-                    {tier.buttonText}
-                  </Button>
-                </LinkNext>
-                    
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-        <Book />
-      </Container>
+      <Pricing classes={classes}></Pricing>
 
       <Container maxWidth="md" component="main" className={classes.heroContent} >
           <Box p={5}>

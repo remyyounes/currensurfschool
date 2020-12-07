@@ -154,7 +154,7 @@ function Book() {
   return <center>
     <Box m={2}>
       <Link href="#book" >
-        <Button  variant="contained" color="primary">Reserver</Button>
+        <Button  variant="contained" color="primary"><b>Reserver</b></Button>
       </Link>
     </Box>
   </center>
@@ -179,7 +179,7 @@ const theme = createMuiTheme({
           light: '#fff',
           main: COLOR_BLUE,
           dark: '#000',
-          contrastText: COLOR_YELLOW,
+          contrastText: 'white',
         },
         secondary: {
           light: COLOR_YELLOW,
@@ -309,24 +309,28 @@ export default function Main() {
           <div style={{position: 'absolute', top: 5}}><Image src="/logo.png" width={100} height={100} /></div>
           <nav style={{marginLeft: 110}}>
             <Link variant="button" color="textPrimary" href="#formules" className={classes.link}>
-              <span style={{color:COLOR_YELLOW}}>
-                Nos Formules  
+              <span style={{color: 'white'}}>
+                <b>Formules</b>
               </span>
             </Link>
 
           </nav>
           <Box display="flex" flex={1} justifyContent="flex-end" color="primary.contrastText" >
-          <div style={{margin: "0 5px 0 5px " }}>
-              <Button variant="contained" color="secondary" >
-                <b>
+          <div style={{margin: "2px 5px 0 5px " }}>
+              <Link href="#book" style={{textDecoration: 'none'}}>
+                <Button variant="contained" color="secondary" >
+                  <b>
 
-                Reserver
-                </b>
-              </Button>
+                  Reserver
+                  </b>
+                </Button>
+              </Link>
             </div>
             <div style={{margin: "0 5px 0 5px " }}>
             <Link href="tel:+33 6 29 46 13 63" color="inherit">
-              <PhoneIcon style={{fontSize: 30}}></PhoneIcon>
+            <span style={{color: COLOR_YELLOW}}>
+              <PhoneIcon style={{fontSize: 38}}></PhoneIcon>
+            </span>
             </Link>
             </div>
           </Box>

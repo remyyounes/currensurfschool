@@ -303,7 +303,7 @@ export default function Main() {
   return (
     <ThemeProvider theme={theme}>
         <Head>
-        <title>Create Next App</title>
+        <title>Curren Surf School</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet"/>
@@ -446,17 +446,7 @@ function Field({ children, id, name, label, multiline, onChange }) {
 function Form({handleFormChange, values}) {
 
   const onValidate = function(){
-    console.log({values})
-    debugger
-    fetch("https://api.mailjet.com/v3.1/send", {
-      body: '{\n  \"Messages\":[\n    {\n      \"From\": {\n        \"Email\": \"ryounes@gmail.com\",\n        \"Name\": \"Remy\"\n      },\n      \"To\": [\n        {\n          \"Email\": \"ryounes@gmail.com\",\n          \"Name\": \"Remy\"\n        }\n      ],\n      \"Subject\": \"My first Mailjet email\",\n      \"TextPart\": \"Greetings from Mailjet.\",\n      \"HTMLPart\": \"Dear passenger 1, welcome to Mailjet! May the delivery force be with you!\",\n      \"CustomID\": \"AppGettingStartedTest\"\n    }\n  ]\n}',
-      headers: {
-        Authorization: "Basic ODBlMmVkYmNjOThhM2U4M2NiYTc2ZmYwYjE5ZDEyNDg6YTAwYmVmZjYwODA4ZTBhOTI5YWNmNzgzYTMyYTY4ZmY=",
-        "Content-Type": "application/json"
-      },
-      method: "POST"
-    })
-    
+    console.log({values})    
   }
   console.log(values.type)
     return <form noValidate autoComplete="off" >
